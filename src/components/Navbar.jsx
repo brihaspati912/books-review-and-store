@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { Link } from 'react-router-dom';
 import { FaBarsStaggered } from "react-icons/fa6";
 import { FaSearch } from "react-icons/fa";
@@ -27,7 +28,8 @@ export default function Navbar() {
                     <CiUser className='size-6' />
                     <CiHeart className='size-6' />
                     <button className='hidden sm-block'><CiHeart className='size-6' /></button>
-                    <Link to="/cart" className='bg-primary p-1 sm-px-6 px-2 flex items-center rounded-sm'><FaShoppingCart />
+                    <Link to="/cart" className='bg-secondary 
+                     p-1 sm-px-6 px-2 flex items-center rounded-sm'><FaShoppingCart />
                         <span className='text-sm font-semibold sm:ml-1'>0</span></Link>
                 </div>
             </nav>

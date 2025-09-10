@@ -2,12 +2,14 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap');
 
 @theme {
-        {
-        'primary': " #3490dc";
-        'secondary': " #ffed4a";
-        'blackBG': '#f3f3f3f';
-    }
+    --color-primary: #3490dc;
+    --color-secondary: #ffed4a;
+    --color-background: #f3f3f3;
 
+}
+
+html {
+    scroll-behavior: smooth;
 }
 
 @font-face {
@@ -57,7 +59,9 @@
 }
 
 .btn-primary {
-    @apply bg-primary px-12 py-2 rounded-md text-base font-secondary font-bold hover:bg-secondary hover:text-white transition-all duration-200 cursor-pointer
+    background-color: yellowgreen;
+    /*@apply blackBG px-12 py-2 rounded-md text-base font-secondary font-bold hover:bg-secondary hover:text-white transition-all duration-200 cursor-pointer*/
+
 }
 
 .html {
