@@ -34,10 +34,10 @@ export default function Navbar() {
 
     return (
         <header className="max-w-screen-2xl mx-auto px-4 py-6">
-            <nav className='flex justify-around items-center'>
+            <nav className='flex justify-between px-6 items-center'>
                 {/*left side */}
                 <div className='flex items-center md:gap-16 gap-4'>
-                    <Link to="/"><FaBarsStaggered className='size-6' /></Link>
+                    <Link to="/"><FaBarsStaggered className='size-7' /></Link>
 
                     <div className='relative sm:w-72 w-40 space:x-2'>
                         <FaSearch className='absolute inline-block   left-2 inset-y-2' />
@@ -68,12 +68,12 @@ export default function Navbar() {
                                         </div>
                                     )}
                                 </>
-                                : <Link to="/">  <CiUser className='size-6' /></Link>
+                                : <Link to="/">  <CiUser className='size-7' /></Link>
                         }
                     </div>
 
-                    <CiHeart className='size-6' />
-                    <button className='hidden sm-block'><CiHeart className='size-6' /></button>
+                    <CiHeart className='size-7' />
+                    <button className='hidden sm-block'><CiHeart className='size-7' /></button>
                     <Link to="/cart" className='bg-secondary 
                      p-1 sm-px-6 px-2 flex items-center rounded-sm'><FaShoppingCart />
                         <span className='text-sm font-semibold sm:ml-1'>0</span></Link>
