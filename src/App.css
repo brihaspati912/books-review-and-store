@@ -58,6 +58,19 @@ html {
     font-size: 16px !important;
 }
 
+.swiperbook {
+    transition: scale 0.3s ease-in-out;
+}
+
+.home_image {
+    display: grid;
+}
+
+.home_article {
+    scale: .8;
+}
+
+
 .btn-primary {
     background-color: yellowgreen;
     /*@apply blackBG px-12 py-2 rounded-md text-base font-secondary font-bold hover:bg-secondary hover:text-white transition-all duration-200 cursor-pointer*/

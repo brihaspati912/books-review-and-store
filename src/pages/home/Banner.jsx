@@ -3,6 +3,7 @@ import banner from '../../assets/banner.png';
 
 import { BookRight } from './BookRight';
 
+
 export const Banner = () => {
     return (
 
@@ -11,6 +12,7 @@ export const Banner = () => {
 
             <div className='md:w-1/2 w-full flex md:justify-end items-center '>
                 <BookRight />
+
             </div>
 
 
