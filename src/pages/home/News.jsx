@@ -92,7 +92,7 @@ export const News = () => {
                                     </div>
 
                                     <div className='flex-shrink-0'>
-                                        <img src={item.image} alt={item.title} className='w-full object-cover ' style={{ width: 200, height: 200 }} />
+                                        <img src={item.image} alt={item.title} className='w-full object-cover scale-100' style={{ width: 200, height: 300, }} />
                                     </div>
                                 </div>
 

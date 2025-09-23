@@ -62,14 +62,30 @@ html {
     transition: scale 0.3s ease-in-out;
 }
 
-.home_image {
+.home__image {
     display: grid;
 }
 
-.home_article {
+.home__article,
+.home__artical img {
+
     scale: .8;
+    transition: scale .4s;
 }
 
+.home__article {
+    gap: 1px;
+}
+
+.swiper-slide-active .home__article,
+.swiper-slide-active .home__artical img {
+    scale: 1;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
 
 .btn-primary {
     background-color: yellowgreen;

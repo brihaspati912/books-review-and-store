@@ -1,7 +1,8 @@
 import React from 'react';
 import banner from '../../assets/banner.png';
 
-import { BookRight } from './BookRight';
+//import { BookRight } from './BookRight';
+import SwiperBooks from './SwiperBooks';
 
 
 export const Banner = () => {
@@ -11,7 +12,8 @@ export const Banner = () => {
         <div className='flex flex-col md:flex-row-reverse  items-center  justify-between gap-12 py-12'>
 
             <div className='md:w-1/2 w-full flex md:justify-end items-center '>
-                <BookRight />
+
+                <SwiperBooks />
 
             </div>
 
