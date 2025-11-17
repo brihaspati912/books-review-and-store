@@ -24,6 +24,7 @@ export default function SwiperBooks() {
         <>
             <div className="home__image">
                 <div className="home__swiper swiper">
+                    <h1 className=''><b>Read</b></h1>
                     <Swiper
                         slidesPerView={3}
                         centeredSlides={false}
@@ -40,8 +41,11 @@ export default function SwiperBooks() {
 
                         className="mySwiper"
                     >
+
                         <div className='swiper-wrapper '>
+
                             <SwiperSlide> <article className="home__artical ">
+
                                 <img src="..\src\assets\dracula-2.jpeg" alt="dracula" />
                             </article></SwiperSlide>
 
