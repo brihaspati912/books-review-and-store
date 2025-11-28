@@ -14,7 +14,7 @@ import 'swiper/css/navigation';
 const categories = ["Choose a Genre", "Horror", "Adventure", "Biography", "Dystopia"]
 
 export const TopSeller = ({ book }) => {
-    {/* Understand this code how to will  fetch vaue from onClick of the select category
+    {/* Understand this code how to will  fetch value from onClick of the select category
          const [selectedCategory, setselectedCategory] = useState("Choose a Genre");
 
     const filteredBooks = selectedCategory === "Choose a Genre" ? books : books.filter(book =>book.category === selectedCategory.toLowerCase())

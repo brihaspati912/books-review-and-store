@@ -7,6 +7,7 @@ import { CiHeart } from "react-icons/ci";
 import { CiUser } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
 import user from "../assets/user.jpg";
+import { useSelector } from 'react-redux';
 
 const navigation = [
     {
@@ -26,9 +27,11 @@ const navigation = [
 
 export default function Navbar() {
 
-    const currentUser = true;
+    const currentUser = false;
     const [isdropDownOpen, setisdropDownOpen] = useState(false);
     console.log(isdropDownOpen)
+    const cartItems = useSelector(state => state.cart.cartItems);
+    console.log(cartItems)
 
 
 
@@ -68,15 +71,21 @@ export default function Navbar() {
                                         </div>
                                     )}
                                 </>
-                                : <Link to="/">  <CiUser className='size-7' /></Link>
+                                : <Link to="/login">  <CiUser className='size-7' /></Link>
                         }
                     </div>
 
                     <CiHeart className='size-7' />
                     <button className='hidden sm-block'><CiHeart className='size-7' /></button>
                     <Link to="/cart" className='bg-secondary 
-                     p-1 sm-px-6 px-2 flex items-center rounded-sm'><FaShoppingCart />
-                        <span className='text-sm font-semibold sm:ml-1'>0</span></Link>
+                     p-1 sm-px-6 px-2 flex items-center rounded-sm'>
+                        <FaShoppingCart />
+                        {
+                            cartItems.length > 0 ? <span className='text-sm font-semibold sm:ml-1'>
+                                {
+                                    cartItems.length}</span> : <span className='text-sm font-semibold sm:ml-1'>0</span>
+                        }
+                    </Link>
                 </div>
             </nav>
         </header>

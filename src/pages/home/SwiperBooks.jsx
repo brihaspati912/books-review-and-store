@@ -24,7 +24,7 @@ export default function SwiperBooks() {
         <>
             <div className="home__image">
                 <div className="home__swiper swiper">
-                    <h1 className=''><b>Read</b></h1>
+                    <h1 className=''><b>Read Now!</b></h1>
                     <Swiper
                         slidesPerView={3}
                         centeredSlides={false}
