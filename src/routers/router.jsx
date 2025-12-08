@@ -7,6 +7,9 @@ import { Login } from "../components/Login";
 import { Register } from "../components/Register";
 import Cart from "../pages/Books/CartPage";
 import CheckOutPage from "../pages/Books/CheckOutPage";
+import SingleBook from "../pages/Books/SingleBook";
+
+import BookReview from "../pages/Books/BookReview";
 
 const router = createBrowserRouter([
     {
@@ -37,9 +40,18 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart />
-            }, {
+            },
+            {
+                path: "/reviews",
+                element: <BookReview />
+            },
+            {
                 path: "/checkout",
                 element: <CheckOutPage />
+            },
+            {
+                path: "/books/:id",
+                element: <SingleBook />
             }
         ]
     },

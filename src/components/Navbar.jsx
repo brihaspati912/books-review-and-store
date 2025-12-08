@@ -20,6 +20,9 @@ const navigation = [
         name: "Cart Page", href: "/cart-page"
     },
     {
+        name: "Reviews", href: "/reviews"
+    },
+    {
         name: "Logout", href: "/logout"
     }
 ]
@@ -27,7 +30,7 @@ const navigation = [
 
 export default function Navbar() {
 
-    const currentUser = false;
+    const currentUser = true;
     const [isdropDownOpen, setisdropDownOpen] = useState(false);
     console.log(isdropDownOpen)
     const cartItems = useSelector(state => state.cart.cartItems);

@@ -9,18 +9,26 @@ import 'swiper/css/pagination';
 import { Navigation } from 'swiper/modules';
 import 'swiper/css/navigation';
 import { BookCard } from '../Books/BookCard';
+import { useFetchAllBooksQuery } from '../../redux/features/books/books.api';
 
 
 export const Recommended = () => {
 
-    const [books, setBooks] = useState([]);
+    /*used useeffect and usestate till 5:20 in the video(redux toolkit now)
+    */
+    //const [books, setBooks] = useState([]);
     const [selectedCategory, setSelectedCategory] = useState("Choose a Genre");
+    const { data: books = [] } = useFetchAllBooksQuery();
 
+    /*used useeffect and usestate till 5:20 in the video(redux toolkit now)
+        */
+    /*
+     useEffect(() => {
+         fetch("books.json").then(res => res.json()).then(data => setBooks(data))
+     }, [])
+ 
+     */
 
-
-    useEffect(() => {
-        fetch("books.json").then(res => res.json()).then(data => setBooks(data))
-    }, [])
     return (
         <><div className="py-10">
             <div>

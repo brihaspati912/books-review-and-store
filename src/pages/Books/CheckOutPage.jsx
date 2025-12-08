@@ -6,12 +6,13 @@ import { useForm } from "react-hook-form";
 export default function CheckOutPage() {
     const cartItems = useSelector(state => state.cart.cartItems);
     const totalPrice = cartItems.reduce((accumulator, item) => accumulator + item.newPrice, 0).toFixed(2);
-    const [message, setMessage] = useState("", "Please Enter a valid Email and Password"); const {
-        register,
+    const [message, setMessage] = useState("", "Please Enter a valid Email and Password");
+    const {
+        register,//check-3hour 47 min of the video will have to add place an order//
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm()
+    } = useForm();
     const onSubmit = (data) => {
         console.log(data);
         const newOrder = {
@@ -40,7 +41,7 @@ export default function CheckOutPage() {
                     <div>
                         <div>
                             <h2 className="font-semibold text-xl text-gray-600 mb-2">Cash On Delevary</h2>
-                            <p className="text-gray-500 mb-2">Total Price: $0</p>
+                            <p className="text-gray-500 mb-2">Total Price:${product.newPrice}</p>
                             <p className="text-gray-500 mb-6">Items:0</p>
                         </div>
 

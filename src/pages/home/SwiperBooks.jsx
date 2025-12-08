@@ -48,7 +48,12 @@ export default function SwiperBooks() {
 
                                 <img src="..\src\assets\dracula-2.jpeg" alt="dracula" />
                             </article></SwiperSlide>
-
+                            <SwiperSlide> <article className="home__artical ">
+                                <img src="..\src\assets\doriangrey.webp" alt="dracula" />
+                            </article></SwiperSlide>
+                            <SwiperSlide> <article className="home__artical ">
+                                <img src="..\src\assets\odyssey.jpeg" alt="dracula" />
+                            </article></SwiperSlide>
 
 
                             <SwiperSlide> <article className="home__artical ">
@@ -57,13 +62,8 @@ export default function SwiperBooks() {
                             <SwiperSlide> <article className="home__artical ">
                                 <img src="..\src\assets\animal-farm.jpeg" alt="dracula" />
                             </article></SwiperSlide>
-                            <SwiperSlide> <article className="home__artical ">
-                                <img src="..\src\assets\book-theif-1.jpeg" alt="dracula" />
-                            </article></SwiperSlide>
 
-                            <SwiperSlide> <article className="home__artical ">
-                                <img src="..\src\assets\20000-leagues.jpeg" alt="dracula" />
-                            </article></SwiperSlide>
+
                         </div>
                     </Swiper>
                 </div>

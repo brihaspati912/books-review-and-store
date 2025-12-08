@@ -14,6 +14,8 @@ export default function CartPage() {
     const handleClearCart = () => {
         dispatch(clearCart())
     }
+    console.log("CART ITEMS:", cartItems);
+
 
     return (
         <div className="flex mt-12 h-full flex-col overflow-hidden bg-white shadow-xl">
@@ -23,6 +25,7 @@ export default function CartPage() {
                     <div className="ml-3 flex h-7 items-center ">
                         <button
                             type="button"
+
                             onClick={handleClearCart}
                             className="relative -m-2 py-1 px-2 bg-red-500 text-white rounded-md hover:bg-secondary transition-all duration-200  "
                         >
@@ -44,7 +47,7 @@ export default function CartPage() {
                                                 <img
                                                     alt=""
                                                     //src={`${getimgUrl(product?.coverImage)}`}
-                                                    src={`${(product?.coverImage)}`} //see this at 3:37:30(Imageurl)
+                                                    src={`/assets/${(product?.coverImage)}`} //see this at 3:37:30(Imageurl)
                                                     className="h-full w-full object-cover object-center"
                                                 />
                                             </div>

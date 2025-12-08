@@ -11,7 +11,8 @@ import { useForm } from "react-hook-form";
 
 export const Login = () => {
 
-    const [message, setMessage] = useState("", "Please Enter a valid Email and Password"); const {
+    const [message, setMessage] = useState("", "Please Enter a valid Email and Password");
+    const {
         register,
         handleSubmit,
         watch,

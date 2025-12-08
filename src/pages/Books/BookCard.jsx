@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
 import { getimgUrl } from '../../utilis/getimgUrl';
 import { useDispatch } from "react-redux"
+
 import { addToCart } from '../../redux/features/cart/cartSlice';
 export const BookCard = ({ book }) => {
     const dispatch = useDispatch();
@@ -10,7 +11,7 @@ export const BookCard = ({ book }) => {
     const handleAddToCart = (product) => {
         dispatch(addToCart(product)) //dispatch(action(payload))
     }
-
+    //console.log(book)
     return (
         <div className=" rounded-lg transition-shadow duration-300">
             <div
@@ -19,7 +20,8 @@ export const BookCard = ({ book }) => {
                 <div className="sm:h-72 sm:flex-shrink-0 border rounded-md">
                     <a href="/">
                         <img
-                            src={"../src/assets/dracula.jpeg"}
+                            // src={"../src/assets/dracula.jpeg"}
+                            src={`../src/assets/${book.coverImage}`}
                             alt=""
                             className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
                             width={10} height={10} />
@@ -27,7 +29,7 @@ export const BookCard = ({ book }) => {
                 </div>
 
                 <div>
-                    <Link to={`/book/${book.id}`}
+                    <Link to={`/books/${book._id}`}
                     ><h3 className="text-xl font-semibold hover:text-blue-600 mb-3">
                             {book?.title}
                         </h3></Link>
