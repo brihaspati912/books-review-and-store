@@ -7,7 +7,7 @@ const baseQuery = fetchBaseQuery({
     prepareHeaders: (headers) => {
         const token = localStorage.getItem('token');
         if (token) {
-            headers.set("Autorization", `Bearer ${token}`);
+            headers.set("Authorization", `Bearer ${token}`);
         }
         return headers;
     }
@@ -61,7 +61,7 @@ const bookReviewsApi = createApi({
                 url: `/delete/${id}`,
                 method: "DELETE"
             }),
-            invalidatesTags: ['Books']
+            invalidatesTags: ['BookReviews']
 
         })
 
@@ -70,6 +70,12 @@ const bookReviewsApi = createApi({
     }),
 
 });
-
-export const { useFetchAllBookReviewsQuery, fetchAllBookReviews, fetchBookReviewById, addBookReview, updateBookReview, deleteBookReview } = bookReviewsApi;
+export const {
+    useFetchAllBookReviewsQuery,
+    useFetchBookReviewByIdQuery,
+    useAddBookReviewMutation,
+    useUpdateBookReviewMutation,
+    useDeleteBookReviewMutation
+} = bookReviewsApi;
 export default bookReviewsApi;
+
