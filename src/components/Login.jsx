@@ -1,7 +1,8 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaGoogle } from "react-icons/fa";
 import { useForm } from "react-hook-form";
+import { useAuth } from '../Context/AuthContext';
 
 
 
@@ -12,19 +13,40 @@ import { useForm } from "react-hook-form";
 export const Login = () => {
 
     const [message, setMessage] = useState("", "Please Enter a valid Email and Password");
+    const { loginUser, signInWithGoogle } = useAuth();
+    const Navigate = useNavigate();
+
     const {
         register,
         handleSubmit,
         watch,
         formState: { errors },
-    } = useForm()
-    const onSubmit = (data) => {
+    } = useForm();
+
+
+    const onSubmit = async (data) => {
         console.log(data);
+
+        try {
+            await loginUser(data.email, data.password);
+            alert("Login Successful");
+            Navigate("/");
+
+        } catch (error) {
+            setMessage("Failed to Login. Please check your credentials.");
+        }
     };
 
 
-    const handleGoggleSignIn = () => {
+    const handleGoggleSignIn = async () => {
         console.log("Goggle Sign In Clicked");
+        try {
+            await signInWithGoogle();
+            alert("Login Successful");
+            Navigate("/");
+        } catch (error) {
+            alert("Failed to Login.");
+        }
     }
 
 

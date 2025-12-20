@@ -8,6 +8,7 @@ import { CiUser } from "react-icons/ci";
 import { FaShoppingCart } from "react-icons/fa";
 import user from "../assets/user.jpg";
 import { useSelector } from 'react-redux';
+import { useAuth } from '../Context/AuthContext';
 
 const navigation = [
     {
@@ -22,15 +23,19 @@ const navigation = [
     {
         name: "Reviews", href: "/reviews"
     },
-    {
-        name: "Logout", href: "/logout"
-    }
+
 ]
 
 
 export default function Navbar() {
 
-    const currentUser = true;
+    const { currentUser, logOutUser } = useAuth();
+    //const currentUser = false;
+    const handleLogOut = () => {
+        logOutUser()
+    }
+
+
     const [isdropDownOpen, setisdropDownOpen] = useState(false);
     console.log(isdropDownOpen)
     const cartItems = useSelector(state => state.cart.cartItems);
@@ -70,6 +75,7 @@ export default function Navbar() {
                                                         <Link to={item.href} className='block px-4 py-2 text-sm hover:bg-grey-100'>{item.name}</Link>
                                                     </li>
                                                 ))}
+                                                <li><button onClick={handleLogOut} className='block px-4 py-2 w-full text-left text-sm hover:bg-grey-100'> LogOut</button></li>
                                             </ul>
                                         </div>
                                     )}
