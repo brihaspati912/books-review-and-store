@@ -1,18 +1,204 @@
+
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
+import { Link } from 'react-router-dom';
 import { useForm } from "react-hook-form";
+import { useAuth } from '../../Context/AuthContext';
+import { useCreateOrderMutation } from '../../redux/features/orders/ordersApi';
+import Swal from 'sweetalert2';
 
 export default function CheckOutPage() {
     const cartItems = useSelector(state => state.cart.cartItems);
+    const { currentUser } = useAuth();
+    const Navigate = useNavigate();
+    const [createOrder, { isLoading, error }] = useCreateOrderMutation();
+
+
+    const totalPrice = cartItems
+        .reduce((acc, item) => acc + item.newPrice, 0)
+        .toFixed(2);
+
+    const {
+        register,
+        handleSubmit,
+        formState: { errors },
+    } = useForm();
+
+    const [isChecked, setIsChecked] = useState(false);
+
+    const onSubmit = async (data) => {
+        const newOrder = {
+            name: data.name,
+            email: currentUser?.email,
+            address: {
+                street: data.address,
+                city: data.city,
+                country: data.country,
+                state: data.state,
+                zipCode: data.zipcode,
+            },
+            phone: data.phone,
+            productIds: cartItems.map(item => item._id),
+            totalPrice,
+        };
+
+        console.log("ORDER DATA 👉", newOrder);
+
+        try {
+            Swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to revert this!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, order it!"
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: "Yes its ok!",
+                        text: "Your book has been ordered.",
+                        icon: "success"
+                    });
+                }
+            });
+            await createOrder(newOrder).unwrap();
+            Navigate('/orders');
+
+        } catch (error) {
+            console.error("Error creating order:", error);
+        }
+    };
+
+
+
+    if (isLoading) {
+        return <h1>Loading...</h1>
+    }
+
+    return (
+        <section>
+            <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
+                <div className="container max-w-screen-lg mx-auto">
+
+                    <h2 className="font-semibold text-xl text-gray-600 mb-2">
+                        Cash On Delivery
+                    </h2>
+                    <p className="text-gray-500 mb-2">Total Price: ${totalPrice}</p>
+                    <p className="text-gray-500 mb-6">Items: {cartItems.length}</p>
+
+                    <div className="bg-white rounded shadow-lg p-6">
+                        <form
+                            onSubmit={handleSubmit(onSubmit)}
+                            className="grid grid-cols-1 lg:grid-cols-3 gap-6"
+                        >
+
+                            <div>
+                                <p className="font-medium text-lg">Personal Details</p>
+                                <p>Please fill all fields.</p>
+                            </div>
+
+                            <div className="lg:col-span-2 grid grid-cols-1 md:grid-cols-5 gap-4">
+
+                                <input
+                                    {...register("name", { required: true })}
+                                    placeholder="Full Name"
+                                    className="md:col-span-5 h-10 border px-4 rounded"
+                                />
+
+                                <input
+                                    value={currentUser?.email}
+                                    disabled
+                                    className="md:col-span-5 h-10 border px-4 rounded bg-gray-100"
+                                />
+
+                                <input
+                                    {...register("phone", { required: true })}
+                                    placeholder="Phone"
+                                    className="md:col-span-5 h-10 border px-4 rounded"
+                                />
+
+                                <input
+                                    {...register("address", { required: true })}
+                                    placeholder="Street Address"
+                                    className="md:col-span-3 h-10 border px-4 rounded"
+                                />
+
+                                <input
+                                    {...register("city", { required: true })}
+                                    placeholder="City"
+                                    className="md:col-span-2 h-10 border px-4 rounded"
+                                />
+
+                                <input
+                                    {...register("country", { required: true })}
+                                    placeholder="Country"
+                                    className="md:col-span-2 h-10 border px-4 rounded"
+                                />
+
+                                <input
+                                    {...register("state", { required: true })}
+                                    placeholder="State"
+                                    className="md:col-span-2 h-10 border px-4 rounded"
+                                />
+
+                                <input
+                                    {...register("zipcode", { required: true })}
+                                    placeholder="Zipcode"
+                                    className="md:col-span-1 h-10 border px-4 rounded"
+                                />
+
+                                <div className="md:col-span-5 flex items-center gap-2">
+                                    <input
+                                        type="checkbox"
+                                        checked={isChecked}
+                                        onChange={(e) => setIsChecked(e.target.checked)}
+                                    />
+                                    <span>
+                                        I agree to <Link className="text-blue-600 underline">Terms & Conditions</Link>
+                                    </span>
+                                </div>
+
+                                <div className="md:col-span-5 text-right">
+                                    <button
+                                        type="submit"
+                                        disabled={!isChecked}
+                                        className="bg-blue-500 text-white px-6 py-2 rounded disabled:opacity-50"
+                                    >
+                                        Place an Order
+                                    </button>
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
+//I was not using register so data was not captured from the form inputs. Now added register to each input field to capture the data correctly.
+
+{/*import React, { useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link } from 'react-router-dom'
+import { useForm } from "react-hook-form";
+import { useAuth } from '../../Context/AuthContext';
+
+export default function CheckOutPage() {
+    const cartItems = useSelector(state => state.cart.cartItems);
+
     const totalPrice = cartItems.reduce((accumulator, item) => accumulator + item.newPrice, 0).toFixed(2);
-    const [message, setMessage] = useState("", "Please Enter a valid Email and Password");
+    const [message, setMessage] = useState("Please Enter a valid Email and Password");
     const {
         register,//check-3hour 47 min of the video will have to add place an order//
         handleSubmit,
-        watch,
+
         formState: { errors },
     } = useForm();
+
     const onSubmit = (data) => {
         console.log(data);
         const newOrder = {
@@ -31,18 +217,21 @@ export default function CheckOutPage() {
         console.log(newOrder)
     };
 
-    const currentUser = true;
+    const { currentUser } = useAuth();
+    // const currentUser = true;
     const [isChecked, setIsChecked] = useState(false)
 
     return (
+
         <section>
             <div className="min-h-screen p-6 bg-gray-100 flex items-center justify-center">
                 <div className="container max-w-screen-lg mx-auto">
                     <div>
+
                         <div>
                             <h2 className="font-semibold text-xl text-gray-600 mb-2">Cash On Delevary</h2>
-                            <p className="text-gray-500 mb-2">Total Price:${product.newPrice}</p>
-                            <p className="text-gray-500 mb-6">Items:0</p>
+                            <p className="text-gray-500 mb-2">Total Price:${totalPrice}</p>
+                            <p className="text-gray-500 mb-6">Items:{cartItems.length}</p>
                         </div>
 
                         <div className="bg-white rounded shadow-lg p-4 px-4 md:p-8 mb-6">
@@ -128,7 +317,7 @@ export default function CheckOutPage() {
                                         </div>
 
                                         <div className="md:col-span-1">
-                                            <label htmlFor="zipcode">Zipcode</label>
+                                            <label htmlFor="zipCode">Zipcode</label>
                                             <input
 
                                                 type="text" name="zipcode" id="zipcode" className="transition-all flex items-center h-10 border mt-1 rounded px-4 w-full bg-gray-50" placeholder="" />
@@ -148,6 +337,7 @@ export default function CheckOutPage() {
                                             <div className="inline-flex items-end">
                                                 <button
                                                     disabled={!isChecked}
+                                                    type='submit'
                                                     className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">Place an Order</button>
                                             </div>
                                         </div>
@@ -167,3 +357,4 @@ export default function CheckOutPage() {
         </section>
     )
 }
+*/}

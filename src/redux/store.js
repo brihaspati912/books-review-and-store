@@ -2,15 +2,17 @@ import { configureStore } from '@reduxjs/toolkit';
 import cartReducer from "../redux/features/cart/cartSlice"
 import booksApi from './features/books/books.api';
 import bookReviewsApi from './features/book-reviews/book-reviews.api';
+import ordersApi from './features/orders/ordersApi';
 
 export default configureStore({
     reducer: {
         cart: cartReducer,
         [booksApi.reducerPath]: booksApi.reducer,
         [bookReviewsApi.reducerPath]: bookReviewsApi.reducer,
+        [ordersApi.reducerPath]: ordersApi.reducer
 
     },
     middleware: (getDefaultMiddleware) =>
-        getDefaultMiddleware().concat(booksApi.middleware, bookReviewsApi.middleware)
+        getDefaultMiddleware().concat(booksApi.middleware, bookReviewsApi.middleware, ordersApi.middleware)
 
 })
