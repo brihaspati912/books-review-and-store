@@ -64,7 +64,8 @@ export const AuthProvider = ({ children }) => {
         registerUser,
         loginUser,
         signInWithGoogle,
-        logOutUser
+        logOutUser,
+        loading
     };
 
     return (
