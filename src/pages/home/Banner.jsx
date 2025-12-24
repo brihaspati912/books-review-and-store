@@ -1,5 +1,6 @@
 import React from 'react';
 import banner from '../../assets/banner.png';
+import { Link } from 'react-router-dom';
 
 //import { BookRight } from './BookRight';
 import SwiperBooks from './SwiperBooks';
@@ -25,7 +26,7 @@ export const Banner = () => {
                 <h1 className='md:text-5xl text-2xl font-medium mb-7'>New Release This Week</h1>
                 <p className="mb-10">Discover Your Next Great Read – At<b> Book And The Reviews</b>, we believe that every book holds the power to inspire, transform, and transport you to new worlds. Whether you're a fan of gripping thrillers, heartwarming romances, epic fantasies, or thought-provoking non-fiction, our curated collection has something for every kind of reader. Dive into expertly written reviews, stay updated on the latest bestsellers, and enjoy seamless shopping all in one place. Let your next favorite book find you.</p>
 
-                <button className=' w-auto bg-primary my-4 px-12 py-2 rounded-md text-base font-secondary font-bold hover:bg-secondary hover:text-white transition-all duration-200 cursor-pointer'>Reviews</button>
+                <Link to="/reviews" className=' w-auto bg-primary my-4 px-12 py-2 rounded-md text-base font-secondary font-bold hover:bg-secondary hover:text-white transition-all duration-200 cursor-pointer'>Reviews</Link>
 
             </div>
 
