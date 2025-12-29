@@ -18,6 +18,10 @@ import AdminLogin from "../components/AdminLogin";
 import DashBoardLayOut from "../pages/Dashboard/DashBoardLayOut";
 import BookReviewManage from "../pages/Books/Manage/BookReviewManage";
 import BookManage from "../pages/Books/Manage/BookManage";
+import AddBook from "../pages/Dashboard/addBook/AddBook";
+import AddBookReview from "../pages/Books/Manage/AddBookReview/AddBookReview";
+import AddBookReviewUser from "../pages/Books/AddBookReviewUser/AddBookReviewUser"
+import UpdateBook from "../pages/Dashboard/editBook/updateBook";
 
 const router = createBrowserRouter([
     {
@@ -45,6 +49,10 @@ const router = createBrowserRouter([
             {
                 path: "/cart",
                 element: <Cart />
+            },
+            {
+                path: "/add-review",
+                element: <PrivateRoute><AddBookReviewUser /></PrivateRoute>
             },
             {
                 path: "/reviews",
@@ -79,7 +87,12 @@ const router = createBrowserRouter([
             },
             {
                 path: "add-new-book",
-                element: <AdminRoute><div>Dashboard Layout</div></AdminRoute>
+                element: <AdminRoute><AddBook /></AdminRoute>
+            },
+            {
+                path: "add-new-book-review",
+                element: <AdminRoute><AddBookReview
+                /></AdminRoute>
             },
             {
                 path: "manage-books",
@@ -91,7 +104,7 @@ const router = createBrowserRouter([
             },
             {
                 path: "edit-book/:id",
-                element: <AdminRoute><div>Dashboard Layout</div></AdminRoute>
+                element: <AdminRoute><UpdateBook /></AdminRoute>
             },
             {
                 path: "delete-book/:id",

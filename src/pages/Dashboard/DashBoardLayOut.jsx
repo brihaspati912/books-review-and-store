@@ -244,10 +244,16 @@ function DashBoardLayOut() {
                                     Manage Reviews
                                 </Link>
                                 <Link
-                                    to="#"
+                                    to="/dashboard/add-new-book"
                                     className="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md mb-3"
                                 >
                                     Add New Book
+                                </Link>
+                                <Link
+                                    to="/dashboard/add-new-book-review"
+                                    className="inline-flex px-5 py-3 text-white bg-purple-600 hover:bg-purple-700 focus:bg-purple-700 rounded-md mb-3"
+                                >
+                                    Add New BookReview
                                 </Link>
                             </div>
                         </div>

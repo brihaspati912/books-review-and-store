@@ -1,28 +1,141 @@
-import React from 'react';
-import { useFetchAllBookReviewsQuery } from '../../redux/features/book-reviews/book-reviews.api';
+import React, { useState } from "react";
+import { useFetchAllBookReviewsQuery } from "../../redux/features/book-reviews/book-reviews.api";
+import { Link } from "react-router-dom";
+
+///learn search book review functionality
+
+
+// Swiper Carousel (correct imports for latest swiper)
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/autoplay";
 
 export default function BookReview() {
     const { data: reviews, isLoading, isError } = useFetchAllBookReviewsQuery();
 
-    if (isLoading) return <div>Loading book reviews...</div>;
-    if (isError) return <div>Error fetching book reviews.</div>;
-    if (!reviews || reviews.length === 0) return <div>No reviews found.</div>;
+    const [expandedReview, setExpandedReview] = useState({});
+    const [search, setSearch] = useState("");
+
+    const toggleReadMore = (id) => {
+        setExpandedReview((prev) => ({ ...prev, [id]: !prev[id] }));
+    };
+
+    // 🔎 FIXED SEARCH FILTER (works now)
+    const filteredReviews = reviews?.filter((review) => {
+        const q = search.toLowerCase().trim();
+        return (
+            review?.title?.toLowerCase().includes(q) ||
+            review?.author?.toLowerCase().includes(q) ||
+            review?.review?.toLowerCase().includes(q)
+        );
+    });
+
+    if (isLoading) return <div className="text-center py-10">Loading book reviews...</div>;
+    if (isError) return <div className="text-center text-red-500">Error fetching book reviews.</div>;
+    if (!reviews?.length) return <div className="text-center">No reviews found.</div>;
 
     return (
-        <>
-            <h1 className="text-2xl font-bold mb-4">All Book Reviews</h1>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {reviews.map((review) => (
+        <div className="max-w-7xl mx-auto px-6 py-10">
 
-                    <div key={review._id} className="bg-white p-4 rounded shadow hover:shadow-lg transition">
-                        <img src={`../assets/${review.coverImage}`} alt={review.title || "Book Cover"} />
-                        <h2 className="font-semibold text-lg mb-1">{review.title || "Untitled Book"}</h2>
-                        <p className="text-gray-600 mb-2"><strong>Reviewer:</strong> {review.author || "Anonymous"}</p>
-                        <p className="text-gray-600 mb-2"><strong>Rating:</strong> {review.rating || 0} / 5</p>
-                        <p className="text-gray-700">{review.review}</p>
-                    </div>
-                ))}
+            {/* Header */}
+            <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
+                <h1 className="text-3xl font-bold">All Book Reviews</h1>
+                <Link to="/add-review">
+                    <button className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+                        + Add Book Review
+                    </button>
+                </Link>
             </div>
-        </>
+
+            {/* 🔎 Search Bar */}
+            <div className="mb-10">
+                <input
+                    type="text"
+                    placeholder="Search by title, author or review..."
+                    className="w-full px-4 py-2 border rounded-lg shadow"
+                    value={search}
+                    onChange={(e) => setSearch(e.target.value)}
+                />
+            </div>
+
+            {/* 🖼️ Featured Carousel */}
+            <h2 className="text-2xl font-semibold mb-4">Featured Reviews</h2>
+            <Swiper
+                modules={[Navigation, Pagination, Autoplay]}
+                navigation
+                pagination={{ clickable: true }}
+                autoplay={{ delay: 3000, disableOnInteraction: false }}
+                spaceBetween={20}
+                slidesPerView={1}
+                breakpoints={{
+                    640: { slidesPerView: 1 },
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
+                }}
+            >
+                {reviews.slice(0, 6).map((review) => (
+                    <SwiperSlide key={review._id}>
+                        <div className="bg-white rounded-xl shadow p-5">
+                            <img
+                                src={`/assets/${review.coverImage}`}
+                                alt={review.title}
+                                className="w-full h-56 object-cover rounded mb-4"
+                            />
+                            <h3 className="text-lg font-semibold">{review.title}</h3>
+                            <p className="text-gray-600">{review.author}</p>
+                        </div>
+                    </SwiperSlide>
+                ))}
+            </Swiper>
+
+            {/* 📚 All Reviews */}
+            <h2 className="text-2xl font-semibold mt-12 mb-4">All Reviews</h2>
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+
+                {/* Show no results message if search fails */}
+                {filteredReviews?.length === 0 && (
+                    <p className="text-center text-gray-500 col-span-full text-lg">
+                        ❌ No results found for "<strong>{search}</strong>"
+                    </p>
+                )}
+
+                {/* Display filtered reviews */}
+                {filteredReviews?.map((review) => {
+                    const expanded = expandedReview[review._id] || false;
+                    const longText = review.review?.length > 250;
+                    const visibleText = expanded
+                        ? review.review
+                        : review.review.substring(0, 250) + (longText ? "..." : "");
+
+                    return (
+                        <div key={review._id} className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-5">
+                            <img
+                                src={`/assets/${review.coverImage}`}
+                                alt={review.title}
+                                className="w-full h-56 object-cover rounded-md mb-4"
+                            />
+
+                            <h3 className="text-xl font-semibold">{review.title}</h3>
+                            <p className="text-gray-600"><strong>Author:</strong> {review.author}</p>
+                            <p className="text-gray-600"><strong>Rating:</strong> ⭐{review.rating} / 5</p>
+
+                            <p className="text-gray-700 mt-2 text-sm">{visibleText}</p>
+
+                            {longText && (
+                                <button
+                                    onClick={() => toggleReadMore(review._id)}
+                                    className="text-blue-600 hover:underline mt-2"
+                                >
+                                    {expanded ? "Read Less ▲" : "Read More ▼"}
+                                </button>
+                            )}
+                        </div>
+                    );
+                })}
+            </div>
+        </div>
     );
 }
