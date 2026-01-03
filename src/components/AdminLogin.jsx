@@ -31,11 +31,11 @@ const AdminLogin = () => {
 
         try {
             //await loginUser(data.email, data.password);
-            console.log(data)
+            // console.log(data)
 
             const auth = response.data;
-            console.log("Auth Data:", auth);
-            console.log("Response from server:", response.data);
+            // console.log("Auth Data:", auth);
+            //  console.log("Response from server:", response.data);
 
             if (auth.token) {
                 localStorage.setItem("token", auth.token);//same name to get in adminroute

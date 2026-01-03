@@ -37,9 +37,9 @@ export default function Navbar() {
 
 
     const [isdropDownOpen, setisdropDownOpen] = useState(false);
-    console.log(isdropDownOpen)
+    //console.log(isdropDownOpen)
     const cartItems = useSelector(state => state.cart.cartItems);
-    console.log(cartItems)
+    // console.log(cartItems)
 
 
 

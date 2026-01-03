@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
-import InputField from '../addBook/InputField';
-import SelectField from '../addBook/SelectField';
+import InputField from '../../Books/Manage/AddBookReview/InputField';
+import SelectField from '../../Books/Manage/AddBookReview/SelectField';
 import { useForm } from 'react-hook-form';
 import { useParams } from 'react-router-dom';
 import Loading from '../../../components/Loading';
@@ -8,7 +8,7 @@ import Swal from 'sweetalert2';
 import {
     useFetchBookReviewByIdQuery,
     useUpdateBookReviewMutation
-} from '../../../../redux/features/book-reviews/book-reviews.api';
+} from '../../../redux/features/book-reviews/book-reviews.api';
 
 const UpdateBookReview = () => {
     const { id } = useParams();

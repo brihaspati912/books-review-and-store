@@ -22,6 +22,8 @@ import AddBook from "../pages/Dashboard/addBook/AddBook";
 import AddBookReview from "../pages/Books/Manage/AddBookReview/AddBookReview";
 import AddBookReviewUser from "../pages/Books/AddBookReviewUser/AddBookReviewUser"
 import UpdateBook from "../pages/Dashboard/editBook/updateBook";
+import UpdateBookReview from "../pages/Dashboard/editBookReview/UpdateBookReview";
+
 
 const router = createBrowserRouter([
     {
@@ -85,6 +87,7 @@ const router = createBrowserRouter([
                 path: " ",
                 element: <AdminRoute><div>Dashboard Layout</div></AdminRoute>
             },
+
             {
                 path: "add-new-book",
                 element: <AdminRoute><AddBook /></AdminRoute>
@@ -106,6 +109,11 @@ const router = createBrowserRouter([
                 path: "edit-book/:id",
                 element: <AdminRoute><UpdateBook /></AdminRoute>
             },
+            {
+                path: "edit-book-review/:id",
+                element: <AdminRoute><UpdateBookReview /></AdminRoute>
+            },
+
             {
                 path: "delete-book/:id",
                 element: <AdminRoute> <div>Dashboard Layout</div></AdminRoute>

@@ -44,7 +44,7 @@ export default function BookReview() {
             <div className="flex flex-col md:flex-row justify-between items-center mb-8 gap-4">
                 <h1 className="text-3xl font-bold">All Book Reviews</h1>
                 <Link to="/add-review">
-                    <button className="bg-blue-600 text-white px-5 py-2 rounded-lg hover:bg-blue-700 transition">
+                    <button className="bg-secondary text-black px-5 py-2 rounded-lg hover:bg-secondary-200 transition">
                         + Add Book Review
                     </button>
                 </Link>
@@ -119,7 +119,8 @@ export default function BookReview() {
                             />
 
                             <h3 className="text-xl font-semibold">{review.title}</h3>
-                            <p className="text-gray-600"><strong>Author:</strong> {review.author}</p>
+                            <p className="text-gray-600"><strong>Reviewer:</strong> {review.author}</p>
+
                             <p className="text-gray-600"><strong>Rating:</strong> ⭐{review.rating} / 5</p>
 
                             <p className="text-gray-700 mt-2 text-sm">{visibleText}</p>
@@ -127,7 +128,7 @@ export default function BookReview() {
                             {longText && (
                                 <button
                                     onClick={() => toggleReadMore(review._id)}
-                                    className="text-blue-600 hover:underline mt-2"
+                                    className="bg-secondary hover:underline mt-2"
                                 >
                                     {expanded ? "Read Less ▲" : "Read More ▼"}
                                 </button>

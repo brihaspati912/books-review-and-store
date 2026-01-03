@@ -12,7 +12,7 @@ export default function SingleBook() {
     const { register, handleSubmit } = useForm();
 
     const onSubmit = (data) => {
-        console.log(data);
+        //  console.log(data);
     };
 
     const { id } = useParams();
@@ -69,7 +69,7 @@ export default function SingleBook() {
                             ${book.newPrice}
                         </span>
                         {book.oldPrice && (
-                            <span className="line-through text-gray-400">${book.oldPrice}</span>
+                            <span className="line-through text-gray-400">Rupees{book.oldPrice}</span>
                         )}
                     </div>
                     <button

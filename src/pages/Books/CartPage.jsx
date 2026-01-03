@@ -63,12 +63,12 @@ export default function CartPage() {
                                                     <p className="mt-1 text-sm text-gray-500 capitalize"><strong>Category:</strong> {product?.category}</p>
                                                 </div>
                                                 <div className="flex flex-1 flex-wrap items-end justify-between space-y-2 text-sm">
-                                                    <p className="text-gray-500"><strong>Qty:</strong> 1</p>
+                                                    <p className="text-gray-500"><strong>Qty:</strong>1{/*product.length*/}</p>
 
                                                     <div className="flex">
                                                         <button type="button"
                                                             onClick={() => handleRemoveFromCart(product)}
-                                                            className="font-medium text-indigo-600 hover:text-indigo-500">
+                                                            className="font-medium bg-secondary text-indigo-600 hover:text-indigo-500">
                                                             Remove
                                                         </button>
                                                     </div>
@@ -92,7 +92,7 @@ export default function CartPage() {
             <div className="border-t border-gray-200 px-4 py-6 sm:px-6">
                 <div className="flex justify-between text-base font-medium text-gray-900">
                     <p>Subtotal</p>
-                    <p>${totalPrice ? totalPrice : 0}</p>
+                    <p>₨{totalPrice ? totalPrice : 0}</p>
                 </div>
                 <p className="mt-0.5 text-sm text-gray-500">Shipping and taxes calculated at checkout.</p>
                 <div className="mt-6">

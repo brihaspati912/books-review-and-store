@@ -13,34 +13,53 @@ import { BookCard } from '../Books/BookCard';
 
 const news = [
     {
-        "id": 1,
-        "title": "Global Climate Summit Calls for Urgent Action",
-        "description": "World leaders gather at the Global Climate Summit to discuss urgent strategies to combat climate change, focusing on reducing carbon emissions and fostering renewable energy solutions.",
-        "image": "../src/assets/dracula.jpeg"
+        id: 1,
+        title: "Frankenstein Returns to the Big Screen After 200 Years",
+        description:
+            "Mary Shelley’s legendary novel 'Frankenstein' comes alive again in a bold new film adaptation, proving that great stories never age — they evolve.",
+        image: "frankenstein"
     },
     {
-        "id": 2,
-        "title": "Breakthrough in AI Technology Announced",
-        "description": "A major breakthrough in artificial intelligence has been announced by researchers, with new advancements promising to revolutionize industries from healthcare to finance.",
-        "image": "../src/assets/dracula.jpeg"
+        id: 2,
+        title: "1984 Feels More Real Than Ever in the Digital Age",
+        description:
+            "George Orwell’s dystopian classic '1984' is trending again as readers draw chilling parallels between the novel’s world and modern digital surveillance.",
+        image: "1984"
     },
     {
-        "id": 3,
-        "title": "New Space Mission Aims to Explore Distant Galaxies",
-        "description": "NASA has unveiled plans for a new space mission that will aim to explore distant galaxies, with hopes of uncovering insights into the origins of the universe.",
-        "image": "../src/assets/dracula.jpeg"
+        id: 3,
+        title: "Dracula’s Shadow Rises With a Dark New Adaptation",
+        description:
+            "A fresh adaptation of Bram Stoker’s 'Dracula' revives gothic horror with modern storytelling, captivating both classic readers and new audiences.",
+        image: "dracula"
     },
     {
-        "id": 4,
-        "title": "Stock Markets Reach Record Highs Amid Economic Recovery",
-        "description": "Global stock markets have reached record highs as signs of economic recovery continue to emerge following the challenges posed by the global pandemic.",
-        "image": "../src/assets/dracula.jpeg"
+        id: 4,
+        title: "Pride and Prejudice Gets a Stylish Modern Makeover",
+        description:
+            "Jane Austen’s timeless romance returns in a modern retelling that blends classic charm with contemporary elegance.",
+        image: "pride"
     },
     {
-        "id": 5,
-        "title": "Innovative New Smartphone Released by Leading Tech Company",
-        "description": "A leading tech company has released its latest smartphone model, featuring cutting-edge technology, improved battery life, and a sleek new design.",
-        "image": "../src/assets/dracula.jpeg"
+        id: 5,
+        title: "Dune Dominates Pop Culture Once Again",
+        description:
+            "Frank Herbert’s epic science-fiction novel 'Dune' surges in popularity as its vast universe captures the imagination of a new generation.",
+        image: "dune"
+    },
+    {
+        id: 6,
+        title: "Sherlock Holmes Proves Brilliance Never Goes Out of Style",
+        description:
+            "Arthur Conan Doyle’s iconic detective is back in the spotlight as new adaptations reignite global interest in classic mystery fiction.",
+        image: "sherlock"
+    },
+    {
+        id: 7,
+        title: "The Great Gatsby Shines Bright in a New Era",
+        description:
+            "F. Scott Fitzgerald’s 'The Great Gatsby' finds renewed relevance as modern readers connect with its themes of ambition, love, and illusion.",
+        image: "gatsby"
     }
 ]
 
@@ -92,7 +111,7 @@ export const News = () => {
                                     </div>
 
                                     <div className='flex-shrink-0'>
-                                        <img src={item.image} alt={item.title} className='w-full object-cover scale-100' style={{ width: 200, height: 300, }} />
+                                        <img src={item.image} alt={item.title} className='w-full border-r-amber-200  bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 object-cover scale-100' style={{ width: 200, height: 300, }} />
                                     </div>
                                 </div>
 

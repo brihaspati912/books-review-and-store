@@ -17,6 +17,7 @@ export const Recommended = () => {
     /*used useeffect and usestate till 5:20 in the video(redux toolkit now)
     */
     //const [books, setBooks] = useState([]);
+
     const [selectedCategory, setSelectedCategory] = useState("Choose a Genre");
     const { data: books = [] } = useFetchAllBooksQuery();
 
@@ -64,8 +65,6 @@ export const Recommended = () => {
                     books.length > 0 &&
                     books.map((book, index) => (
                         <SwiperSlide key={index} ><BookCard book={book} /></SwiperSlide>
-
-
                     ))}
 
 

@@ -40,7 +40,7 @@ export const Login = () => {
 
 
     const handleGoggleSignIn = async () => {
-        console.log("Goggle Sign In Clicked");
+        //console.log("Goggle Sign In Clicked");
         try {
             await signInWithGoogle();
             alert("Login Successful");

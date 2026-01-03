@@ -21,7 +21,7 @@ export const Register = () => {
             alert("User Registered Successfully");
             console.log("User Registered Successfully");
         } catch (error) {
-            setMessage("Please Provide a valid Email hello and Password");
+            setMessage("Please Provide a valid Email  and Password");
             console.log(error);
         }
     };
@@ -33,7 +33,7 @@ export const Register = () => {
     //at 6:15 try loging and register with goggle
 
     const handleGoggleSignIn = async () => {
-        console.log("Goggle Sign In Clicked");
+        //  console.log("Goggle Sign In Clicked");
         try {
             await signInWithGoogle();
             alert("Login Successful");

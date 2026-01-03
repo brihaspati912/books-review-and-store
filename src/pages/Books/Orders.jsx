@@ -36,7 +36,7 @@ function Orders() {
                                     <p className="text-gray-600">Name: {order.name}</p>
                                     <p className="text-gray-600">Email: {order.email}</p>
                                     <p className="text-gray-600">Phone: {order.phone}</p>
-                                    <p className="text-gray-600">Total Price: ${order.totalPrice}</p>
+                                    <p className="text-gray-600">Total Price: Rupees{order.totalPrice}</p>
                                     <h3 className="font-semibold mt-2">Address:</h3>
                                     <p> City: {order.city}, State: {order.state}, Country: {order.country}, ZipCode: {order.zipCode}   </p>
                                     <h3 className="font-semibold mt-2">Products Id:</h3>
