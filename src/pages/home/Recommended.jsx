@@ -1,76 +1,52 @@
-import React from 'react'
-import { useEffect, useState } from "react"
-import { Swiper, SwiperSlide } from 'swiper/react';
+import React from "react";
+import { Swiper, SwiperSlide } from "swiper/react";
+import { Navigation, Autoplay } from "swiper/modules";
 
-// Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/autoplay";
 
-import { Navigation } from 'swiper/modules';
-import 'swiper/css/navigation';
-import { BookCard } from '../Books/BookCard';
-import { useFetchAllBooksQuery } from '../../redux/features/books/books.api';
-
+import { BookCard } from "../Books/BookCard";
+import { useFetchAllBooksQuery } from "../../redux/features/books/books.api";
 
 export const Recommended = () => {
+    const { data: books = [], isLoading } = useFetchAllBooksQuery();
 
-    /*used useeffect and usestate till 5:20 in the video(redux toolkit now)
-    */
-    //const [books, setBooks] = useState([]);
+    if (isLoading) return null;
 
-    const [selectedCategory, setSelectedCategory] = useState("Choose a Genre");
-    const { data: books = [] } = useFetchAllBooksQuery();
-
-    /*used useeffect and usestate till 5:20 in the video(redux toolkit now)
-        */
-    /*
-     useEffect(() => {
-         fetch("books.json").then(res => res.json()).then(data => setBooks(data))
-     }, [])
- 
-     */
+    const recommendedBooks = books.slice(0, 6); // IMPORTANT
 
     return (
-        <><div className="py-10">
-            <div>
-                <h2 className="text-3xl font-semibold mb-6 ">Recommended </h2>
-            </div>
+        <div className="py-10">
+            <h2 className="text-3xl font-semibold mb-6">Recommended</h2>
 
-            <Swiper navigation={true}
-                slidesPerView={1}
+            <Swiper
+                modules={[Navigation, Autoplay]}
+                navigation
+                autoplay={
+                    recommendedBooks.length > 3
+                        ? {
+                            delay: 2500,
+                            disableOnInteraction: false,
+                            pauseOnMouseEnter: true,
+                        }
+                        : false
+                }
+                loop={recommendedBooks.length > 3}
                 spaceBetween={30}
-
+                slidesPerView={1}
                 breakpoints={{
-                    640: {
-                        slidesPerView: 1,
-                        spaceBetween: 20,
-                    },
-                    768: {
-                        slidesPerView: 2,
-                        spaceBetween: 40,
-                    },
-                    1024: {
-                        slidesPerView: 2,
-                        spaceBetween: 50,
-                    },
-                    1184: {
-                        slidesPerView: 3,
-                        spaceBetween: 50,
-                    },
+                    640: { slidesPerView: 1 },
+                    768: { slidesPerView: 2 },
+                    1024: { slidesPerView: 3 },
                 }}
-                modules={[Navigation]}
-                className="mySwiper"
             >
-                {
-                    books.length > 0 &&
-                    books.map((book, index) => (
-                        <SwiperSlide key={index} ><BookCard book={book} /></SwiperSlide>
-                    ))}
-
-
+                {recommendedBooks.map((book) => (
+                    <SwiperSlide key={book._id}>
+                        <BookCard book={book} />
+                    </SwiperSlide>
+                ))}
             </Swiper>
         </div>
-        </>
-
-    )
-}
+    );
+};
