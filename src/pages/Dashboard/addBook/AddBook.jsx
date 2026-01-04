@@ -79,6 +79,24 @@ const AddBook = () => {
                         { value: 'fiction', label: 'Fiction' },
                         { value: 'horror', label: 'Horror' },
                         { value: 'adventure', label: 'Adventure' },
+                        { value: 'biography', label: 'Biography' },
+                        { value: 'dystopia', label: 'Dystopia' },
+                        { value: 'science fiction', label: 'Science Fiction' },
+                        { value: 'fantasy', label: 'Fantasy' },
+                        { value: 'mystery', label: 'Mystery' },
+                        { value: 'romance', label: 'Romance' },
+                        { value: 'thriller', label: 'Thriller' },
+                        { value: 'historical fiction', label: 'Historical Fiction' },
+                        { value: 'self-help', label: 'Self-Help' },
+                        { value: 'health & wellness', label: 'Health & Wellness' },
+                        { value: 'business & economics', label: 'Business & Economics' },
+                        { value: 'philosophy', label: 'Philosophy' },
+                        { value: 'religion & spirituality', label: 'Religion & Spirituality' },
+                        { value: 'poetry', label: 'Poetry' },
+                        { value: 'young adult', label: 'Young Adult' },
+                        { value: "children's literature", label: "Children's Literature" },
+                        { value: "Gothic", label: "Gothic" }
+
                         // Add more options as needed
                     ]}
                     register={register}

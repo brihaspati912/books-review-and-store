@@ -17,21 +17,22 @@ const news = [
         title: "Frankenstein Returns to the Big Screen After 200 Years",
         description:
             "Mary Shelley’s legendary novel 'Frankenstein' comes alive again in a bold new film adaptation, proving that great stories never age — they evolve.",
-        image: "frankenstein"
+        image: "../src/assets/frankenstein.jpg"
     },
     {
         id: 2,
         title: "1984 Feels More Real Than Ever in the Digital Age",
         description:
             "George Orwell’s dystopian classic '1984' is trending again as readers draw chilling parallels between the novel’s world and modern digital surveillance.",
-        image: "1984"
+        image: "../src/assets/1984.jpeg"
     },
     {
         id: 3,
         title: "Dracula’s Shadow Rises With a Dark New Adaptation",
         description:
             "A fresh adaptation of Bram Stoker’s 'Dracula' revives gothic horror with modern storytelling, captivating both classic readers and new audiences.",
-        image: "dracula"
+        image: "../src/assets/dracula.jpeg"
+
     },
     {
         id: 4,
@@ -111,7 +112,7 @@ export const News = () => {
                                     </div>
 
                                     <div className='flex-shrink-0'>
-                                        <img src={item.image} alt={item.title} className='w-full border-r-amber-200  bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 object-cover scale-100' style={{ width: 200, height: 300, }} />
+                                        <img src={item.image} alt={item.title} className='w-full border-r  bg-white shadow-lg rounded-lg overflow-hidden hover:shadow-2xl transition-shadow duration-300 object-cover scale-100' style={{ width: 200, height: 300, }} />
                                     </div>
                                 </div>
 

@@ -125,6 +125,13 @@ const UpdateBookReview = () => {
                     placeholder="Old Price"
                     register={register}
                 />
+                <InputField
+                    label="Rating(1-5)"
+                    name="rating"
+                    type="number"
+                    placeholder="New Price"
+                    register={register}
+                />
 
                 <InputField
                     label="New Price"

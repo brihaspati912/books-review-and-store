@@ -78,13 +78,18 @@ export default function BookReview() {
             >
                 {reviews.slice(0, 6).map((review) => (
                     <SwiperSlide key={review._id}>
-                        <div className="bg-white rounded-xl shadow p-5">
-                            <img
-                                src={`/assets/${review.coverImage}`}
-                                alt={review.title}
-                                className="w-full h-56 object-cover rounded mb-4"
-                            />
-                            <h3 className="text-lg font-semibold">{review.title}</h3>
+                        <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-5">
+                            <div className="w-full h-79 bg-gray-100 flex items-center justify-center rounded mb-4">
+                                <img
+                                    src={`../src/assets/${review.coverImage}`}
+                                    alt={review.title}
+                                    className="w-full h-56 rounded-md mb-4 object-contain "
+                                />
+                            </div>
+
+                            <h3 className="text-lg font-semibold line-clamp-2">
+                                {review.title}
+                            </h3>
                             <p className="text-gray-600">{review.author}</p>
                         </div>
                     </SwiperSlide>
@@ -113,9 +118,9 @@ export default function BookReview() {
                     return (
                         <div key={review._id} className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-5">
                             <img
-                                src={`/assets/${review.coverImage}`}
+                                src={`../src/assets/${review.coverImage}`}
                                 alt={review.title}
-                                className="w-full h-56 object-cover rounded-md mb-4"
+                                className="w-full h-56 rounded-md mb-4"
                             />
 
                             <h3 className="text-xl font-semibold">{review.title}</h3>

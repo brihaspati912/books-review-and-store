@@ -12,7 +12,7 @@ import 'swiper/css/navigation';
 import { useFetchAllBooksQuery } from "../../redux/features/books/books.api";
 
 
-const categories = ["Choose a Genre", "Horror", "Adventure", "Biography", "Dystopia"]
+const categories = ["Choose a Genre", "Horror", "Adventure", "Biography", "Dystopia", "Biography", "Science Fiction", "Fantasy", "Mystery", "Romance", "Gothic", "Thriller", "Historical Fiction", "Self-Help", "Health & Wellness", "Business & Economics", "Philosophy", "Religion & Spirituality", "Poetry", "Young Adult", "Children's Literature"]
 
 export const TopSeller = ({ book }) => {
     {/* Understand this code how to will  fetch value from onClick of the select category
