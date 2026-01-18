@@ -21,7 +21,7 @@ import BookManage from "../pages/Books/Manage/BookManage";
 import AddBook from "../pages/Dashboard/addBook/AddBook";
 import AddBookReview from "../pages/Books/Manage/AddBookReview/AddBookReview";
 import AddBookReviewUser from "../pages/Books/AddBookReviewUser/AddBookReviewUser"
-import UpdateBook from "../pages/Dashboard/editBook/updateBook";
+import UpdateBook from "../pages/Dashboard/editBook/UpdateBook";
 import UpdateBookReview from "../pages/Dashboard/editBookReview/UpdateBookReview";
 
 
