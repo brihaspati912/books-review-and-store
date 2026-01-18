@@ -66,7 +66,7 @@ export default function SingleBook() {
                     </p>
                     <div className="flex items-center gap-4 mb-4">
                         <span className="text-lg font-semibold text-blue-600">
-                            ${book.newPrice}
+                            ₹{book.newPrice}
                         </span>
                         {book.oldPrice && (
                             <span className="line-through text-gray-400">Rupees{book.oldPrice}</span>
