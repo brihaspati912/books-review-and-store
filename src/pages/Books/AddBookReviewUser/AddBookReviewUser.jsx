@@ -86,6 +86,19 @@ const AddBookReview = () => {
                         { value: 'fiction', label: 'Fiction' },
                         { value: 'horror', label: 'Horror' },
                         { value: 'adventure', label: 'Adventure' },
+                        { value: 'mystery', label: 'Mystery' },
+                        { value: 'romance', label: 'Romance' },
+                        { value: 'sci-fi', label: 'Sci-Fi' },
+                        { value: 'biography', label: 'Biography' },
+                        { value: 'self-help', label: 'Self-Help' },
+                        { value: 'health', label: 'Health' },
+                        { value: 'history', label: 'History' },
+                        { value: 'travel', label: 'Travel' },
+                        { value: 'children', label: 'Children' },
+                        { value: 'fantasy', label: 'Fantasy' },
+                        { value: 'education', label: 'Education' },
+                        { value: 'comics', label: 'Comics' },
+                        { value: 'cookbooks', label: 'Cookbooks' },
                         // Add more options as needed
                     ]}
                     register={register}
