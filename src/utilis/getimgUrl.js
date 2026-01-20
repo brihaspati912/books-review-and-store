@@ -1,4 +1,6 @@
-function getimgUrl(name) {
+function getImgUrl(name) {
     return new URL(`../assets/${name}`, import.meta.Url)
 }
-export { getimgUrl }
+export { getImgUrl }
+
+//32min

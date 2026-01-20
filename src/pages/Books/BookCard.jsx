@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
-import { getimgUrl } from '../../utilis/getimgUrl';
+
 import { useDispatch } from "react-redux"
+
 
 import { addToCart } from '../../redux/features/cart/cartSlice';
 export const BookCard = ({ book }) => {
@@ -20,8 +21,8 @@ export const BookCard = ({ book }) => {
                 <div className="sm:h-72 sm:flex-shrink-0 border rounded-md">
                     <a href="/">
                         <img
-                            // src={"../src/assets/dracula.jpeg"}
-                            src={`../src/assets/${book.coverImage}`}
+                            src={getImgUrl(book.coverImage)}
+                            //src={`../src/assets/${book.coverImage}`}
                             alt=""
                             className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
                             width={10} height={10} />
