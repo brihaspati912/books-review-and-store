@@ -50,7 +50,7 @@ export default function Navbar() {
                 <div className='flex items-center md:gap-16 gap-4'>
                     <Link to="/"><FaBarsStaggered className='size-7' /></Link>
 
-                    <div className='relative sm:w-72 w-36 space:x-2'>
+                    <div className='relative sm:w-72 w-33 space:x-2'>
                         <FaSearch className='absolute inline-block   left-2 inset-y-2' />
                         <input type="text" placeholder='Search' className='border bg-[#EAEAEA] w-full  rounded-md px-6 py-1 md:px-8 focus:outline-none  ' />
                     </div>
