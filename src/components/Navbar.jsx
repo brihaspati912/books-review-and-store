@@ -67,10 +67,10 @@ export default function Navbar() {
                     <div>
                         {
                             currentUser ?
-                                <><button onClick={() => { setisdropDownOpen(!isdropDownOpen) }}> <img
+                                <><button onClick={() => { setisdropDownOpen(!isdropDownOpen) }}>  <img
     src={user}
     alt="User"
-    className={`h-10 w-10 rounded-full my-1 ${currentUser ? "ring-2 ring-yellow-500" : ""} object-cover`}
+    className={`h-10 w-10 rounded-full object-cover ${currentUser ? "ring-2 ring-yellow-500" : ""}`}
   /></button>
                                     {/* Show drodowns*/}
                                     {isdropDownOpen && (
