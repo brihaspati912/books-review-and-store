@@ -6,6 +6,8 @@ import { useForm } from "react-hook-form";
 import { useDispatch } from "react-redux";
 import { addToCart } from "../../redux/features/cart/cartSlice";
 import { useFetchBookByIdQuery } from "../../redux/features/books/books.api";
+import Loading from "../../components/Loading";
+import { getImgUrl } from "../../utilis/getImgUrl";
 
 export default function SingleBook() {
 
@@ -50,7 +52,8 @@ export default function SingleBook() {
                 {/* Book Image */}
                 <div className="h-64 w-full bg-gray-100 flex items-center justify-center">
                     <img
-                        src={`../src/assets/${book.coverImage}`}
+                        // src={`../src/assets/${book.coverImage}`}
+                        src={getImgUrl(book.coverImage)}
                         alt={book.title}
                         className="h-full w-full object-cover"
                     />

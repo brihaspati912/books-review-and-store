@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useFetchAllBookReviewsQuery } from "../../redux/features/book-reviews/book-reviews.api";
 import { Link } from "react-router-dom";
-
+import { getImgUrl } from "../../utilis/getImgUrl";
 ///learn search book review functionality
 
 
@@ -118,7 +118,8 @@ export default function BookReview() {
                     return (
                         <div key={review._id} className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-5">
                             <img
-                                src={`../src/assets/${review.coverImage}`}
+                                //src={`../src/assets/${review.coverImage}`}
+                                src={getImgUrl(review.coverImage)}
                                 alt={review.title}
                                 className="w-full h-56 rounded-md mb-4"
                             />

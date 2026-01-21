@@ -1,4 +1,5 @@
-function getimgUrl(name) {
-    return new URL(`../assets/${name}`, import.meta.Url)
+function getImgUrl(name) {
+    return new URL(`../assets/${name}`, import.meta.url).href;
 }
-export { getimgUrl }
+
+export { getImgUrl };

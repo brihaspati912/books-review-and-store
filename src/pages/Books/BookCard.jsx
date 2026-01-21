@@ -1,16 +1,18 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
-import { getimgUrl } from '../../utilis/getimgUrl';
+import { getImgUrl } from '../../utilis/getImgUrl';
 import { useDispatch } from "react-redux"
 
 import { addToCart } from '../../redux/features/cart/cartSlice';
+import { get } from 'react-hook-form';
 export const BookCard = ({ book }) => {
     const dispatch = useDispatch();
 
     const handleAddToCart = (product) => {
         dispatch(addToCart(product)) //dispatch(action(payload))
     }
+    console.log(getImgUrl(book.coverImage));
     //console.log(book)
     return (
         <div className=" rounded-lg transition-shadow duration-300">
@@ -21,8 +23,9 @@ export const BookCard = ({ book }) => {
                     <a href="/">
                         <img
                             // src={"../src/assets/dracula.jpeg"}
-                            src={`../src/assets/${book.coverImage}`}
-                            alt=""
+                            // src={`../src/assets/${book.coverImage}`}
+                            src={getImgUrl(book.coverImage)}
+                            alt="img"
                             className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
                             width={10} height={10} />
                     </a>
