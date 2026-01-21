@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
-import { getimgUrl } from '../../utilis/getimgUrl';
+import { getImgUrl } from '../../utilis/getImgUrl';
 import { useDispatch } from "react-redux"
 
 
