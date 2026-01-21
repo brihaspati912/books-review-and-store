@@ -1,7 +1,7 @@
 import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import '../../App.css';
-
+import { getImgUrl } from '../../utilis/getImgUrl';
 
 // Import Swiper styles
 import 'swiper/css';
@@ -47,21 +47,21 @@ export default function SwiperBooks() {
 
                             <SwiperSlide> <article className="home__artical ">
 
-                                <img src="..\src\assets\dracula-2.jpeg" alt="dracula" />
+                                <img src={getImgUrl("dracula-2.jpeg")} alt="dracula" />
                             </article></SwiperSlide>
                             <SwiperSlide> <article className="home__artical ">
-                                <img src="..\src\assets\doriangrey.webp" alt="dracula" />
+                                <img src={getImgUrl("doriangrey.webp")} alt="dracula" />
                             </article></SwiperSlide>
                             <SwiperSlide> <article className="home__artical ">
-                                <img src="..\src\assets\odyssey.jpeg" alt="dracula" />
+                                <img src={getImgUrl("odyssey.jpeg")} alt="dracula" />
                             </article></SwiperSlide>
 
 
                             <SwiperSlide> <article className="home__artical ">
-                                <img src="..\src\assets\1984.jpeg" alt="dracula" />
+                                <img src={getImgUrl("1984.jpeg")} alt="dracula" />
                             </article></SwiperSlide>
                             <SwiperSlide> <article className="home__artical ">
-                                <img src="..\src\assets\animal-farm.jpeg" alt="dracula" />
+                                <img src={getImgUrl("animal-farm.jpeg")} alt="dracula" />
                             </article></SwiperSlide>
 
 
