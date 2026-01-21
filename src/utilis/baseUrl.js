@@ -1,4 +1,4 @@
 const getBaseUrl = () => {
-    return "http://localhost:5000" || import.meta.env.VITE_BASE_URL;
+    return "https://book-review-and-store-backend.vercel.app" || import.meta.env.VITE_BASE_URL;
 }
 export default getBaseUrl;
