@@ -81,7 +81,8 @@ export default function BookReview() {
                         <div className="bg-white rounded-xl shadow-md hover:shadow-xl transition p-5">
                             <div className="w-full h-79 bg-gray-100 flex items-center justify-center rounded mb-4">
                                 <img
-                                    src={`../src/assets/${review.coverImage}`}
+                                   // src={`../src/assets/${review.coverImage}`}
+                                     src={getImgUrl(review.coverImage)}
                                     alt={review.title}
                                     className="w-full h-56 rounded-md mb-4 object-contain "
                                 />
