@@ -1,7 +1,6 @@
-import React from 'react'
+import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import '../../App.css';
-import { getImgUrl } from '../../utilis/getImgUrl';
 
 
 // Import Swiper styles
@@ -10,16 +9,17 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 
-
-
 import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
-
-
+// Static imports for all images
+import dracula from '../../assets/dracula-2.jpeg';
+import doriangrey from '../../assets/doriangrey.webp';
+import odyssey from '../../assets/odyssey.jpeg';
+import nineteen84 from '../../assets/1984.jpeg';
+import animalFarm from '../../assets/animal-farm.jpeg';
 
 export default function SwiperBooks() {
-
-
+    const images = [dracula, doriangrey, odyssey, nineteen84, animalFarm];
 
     return (
         <>
@@ -47,21 +47,21 @@ export default function SwiperBooks() {
 
                             <SwiperSlide> <article className="home__artical ">
 
-                                <img src={getImgUrl("dracula-2.jpeg")} alt="dracula" />
+                                <img src="..\src\assets\dracula-2.jpeg" alt="dracula" />
                             </article></SwiperSlide>
                             <SwiperSlide> <article className="home__artical ">
-                                <img src={getImgUrl("doriangrey.webp")} alt="dracula" />
+                                <img src="..\src\assets\doriangrey.webp" alt="dracula" />
                             </article></SwiperSlide>
                             <SwiperSlide> <article className="home__artical ">
-                                <img src={getImgUrl("odyssey.jpeg")} alt="dracula" />
+                                <img src="..\src\assets\odyssey.jpeg" alt="dracula" />
                             </article></SwiperSlide>
 
 
                             <SwiperSlide> <article className="home__artical ">
-                                <img src={getImgUrl("1984.jpeg")} alt="dracula" />
+                                <img src="..\src\assets\1984.jpeg" alt="dracula" />
                             </article></SwiperSlide>
                             <SwiperSlide> <article className="home__artical ">
-                                <img src={getImgUrl("animal-farm.jpeg")} alt="dracula" />
+                                <img src="..\src\assets\animal-farm.jpeg" alt="dracula" />
                             </article></SwiperSlide>
 
 

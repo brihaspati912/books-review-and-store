@@ -1,8 +1,9 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 import { FiShoppingCart } from "react-icons/fi";
-import { getImgUrl } from '../../utilis/getImgUrl';
+import { getimgUrl } from '../../utilis/getimgUrl';
 import { useDispatch } from "react-redux"
+
 
 import { addToCart } from '../../redux/features/cart/cartSlice';
 import { get } from 'react-hook-form';
@@ -23,9 +24,8 @@ export const BookCard = ({ book }) => {
                     <a href="/">
                         <img
                             // src={"../src/assets/dracula.jpeg"}
-                            // src={`../src/assets/${book.coverImage}`}
-                            src={getImgUrl(book.coverImage)}
-                            alt="img"
+                            src={`../src/assets/${book.coverImage}`}
+                            alt=""
                             className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
                             width={10} height={10} />
                     </a>
