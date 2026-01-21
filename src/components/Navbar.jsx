@@ -50,14 +50,10 @@ export default function Navbar() {
                 <div className='flex items-center md:gap-16 gap-4'>
                     <Link to="/"><FaBarsStaggered className='size-7' /></Link>
 
-                 <div className="relative w-full sm:w-72">
-  <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-500" />
-  <input
-    type="text"
-    placeholder="Search"
-    className="w-full sm:pl-5 pl-10 pr-4 py-2 rounded-md border bg-[#EAEAEA] focus:outline-none focus:ring-2 focus:ring-yellow-500 text-sm sm:text-base"
-  />
-</div>
+                    <div className='relative sm:w-72 w-40 space:x-2'>
+                        <FaSearch className='absolute inline-block   left-2 inset-y-2' />
+                        <input type="text" placeholder='Search' className='border bg-[#EAEAEA] w-full  rounded-md px-6 py-1 md:px-8 focus:outline-none  ' />
+                    </div>
                 </div>
 
 
@@ -67,11 +63,9 @@ export default function Navbar() {
                     <div>
                         {
                             currentUser ?
-                                <><button onClick={() => { setisdropDownOpen(!isdropDownOpen) }}>  <img
-    src={user}
-    alt="User"
-    className={`h-10 w-10 rounded-full object-cover ${currentUser ? "ring-2 ring-yellow-500" : ""}`}
-  /></button>
+                                <><button onClick={() => { setisdropDownOpen(!isdropDownOpen) }}><img src={user} alt="" className={`size-7 rounded-full my-1
+                                ${currentUser ? "ring-2 ring-yellow-500" : ""}
+                                `} /></button>
                                     {/* Show drodowns*/}
                                     {isdropDownOpen && (
                                         <div className='absolute mt-2 w-48 right-0 bg-white shadow-lg rounded-md  z-40 '>
