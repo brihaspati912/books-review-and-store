@@ -24,7 +24,8 @@ export const BookCard = ({ book }) => {
                     <a href="/">
                         <img
                             // src={"../src/assets/dracula.jpeg"}
-                            src={`../src/assets/${book.coverImage}`}
+                           // src={`../src/assets/${book.coverImage}`}
+                             src={`/assets/${book.coverImage}`}
                             alt=""
                             className="w-full bg-cover p-2 rounded-md cursor-pointer hover:scale-105 transition-all duration-200"
                             width={10} height={10} />
