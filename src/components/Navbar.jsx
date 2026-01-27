@@ -11,9 +11,7 @@ import { useSelector } from 'react-redux';
 import { useAuth } from '../Context/AuthContext';
 
 const navigation = [
-    {
-        name: "Dashboard", href: "/dashboard"
-    },
+   
     {
         name: "Orders", href: "/orders"
     },
@@ -39,7 +37,9 @@ export default function Navbar() {
     const [isdropDownOpen, setisdropDownOpen] = useState(false);
     //console.log(isdropDownOpen)
     const cartItems = useSelector(state => state.cart.cartItems);
-    // console.log(cartItems)
+    // console.log(cartItems) add this to navbar  {
+     //   name: "Dashboard", href: "/dashboard"
+    //},
 
 
 
