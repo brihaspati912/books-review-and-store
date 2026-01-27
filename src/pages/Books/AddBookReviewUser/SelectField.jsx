@@ -1,11 +1,21 @@
 import React from 'react';
 
-const SelectField = ({ label, name, options, register }) => {
+const SelectField = ({
+    label,
+    name,
+    options,
+    register,
+    errors,
+    validation = {},
+}) => {
     return (
         <div className="mb-4">
-            <label className="block text-sm font-semibold text-gray-700">{label}</label>
+            <label className="block text-sm font-semibold text-gray-700 mb-1">
+                {label}
+            </label>
+
             <select
-                {...register(name, { required: true })}
+                {...register(name, validation)}
                 className="w-full p-2 border rounded-md focus:outline-none focus:ring focus:border-blue-300"
             >
                 {options.map((option) => (
@@ -14,6 +24,12 @@ const SelectField = ({ label, name, options, register }) => {
                     </option>
                 ))}
             </select>
+
+            {errors?.[name] && (
+                <p className="text-red-500 text-sm mt-1">
+                    {errors[name].message}
+                </p>
+            )}
         </div>
     );
 };
