@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import InputField from '../../Books/Manage/AddBookReview/InputField';
 import SelectField from '../../Books/Manage/AddBookReview/SelectField';
 import { useForm } from 'react-hook-form';
@@ -12,16 +12,26 @@ import {
 
 const UpdateBookReview = () => {
     const { id } = useParams();
-
-    // Fetch book review data
     const { data: bookReviewData, isLoading, isError, refetch } = useFetchBookReviewByIdQuery(id);
-
-    // Mutation hook to update
     const [updateBookReview] = useUpdateBookReviewMutation();
 
-    const { register, handleSubmit, setValue, reset } = useForm();
+    const {
+        register,
+        handleSubmit,
+        setValue,
+        watch,
+        formState: { errors }
+    } = useForm();
 
-    // Prefill form when data is loaded
+    const [imagePreview, setImagePreview] = useState("");
+
+    // Watch review for word counter
+    const reviewText = watch("review") || "";
+    const wordCount = reviewText.trim() ? reviewText.trim().split(/\s+/).length : 0;
+
+    // Watch image URL changes
+    const imageUrl = watch("coverImage");
+
     useEffect(() => {
         if (bookReviewData) {
             setValue('title', bookReviewData.title);
@@ -30,23 +40,40 @@ const UpdateBookReview = () => {
             setValue('trending', bookReviewData.trending);
             setValue('oldPrice', bookReviewData.oldPrice);
             setValue('newPrice', bookReviewData.newPrice);
+            setValue('rating', bookReviewData.rating);
             setValue('coverImage', bookReviewData.coverImage);
+            setImagePreview(bookReviewData.coverImage);
         }
     }, [bookReviewData, setValue]);
+
+    useEffect(() => {
+        if (imageUrl) setImagePreview(imageUrl);
+    }, [imageUrl]);
+
+    const handleFileChange = (e) => {
+        const file = e.target.files[0];
+        if (file) {
+            const localUrl = URL.createObjectURL(file);
+            setImagePreview(localUrl);
+
+            // Replace with uploaded URL if using cloud storage later
+            setValue("coverImage", file.name);
+        }
+    };
 
     const onSubmit = async (data) => {
         const updateBookReviewData = {
             title: data.title,
-            review: data.review, // ⚡ match backend
+            review: data.review,
             category: data.category,
             trending: data.trending || false,
             oldPrice: Number(data.oldPrice),
             newPrice: Number(data.newPrice),
-            coverImage: data.coverImage || bookReviewData.coverImage, // ⚡ use correct variable
+            rating: Number(data.rating),
+            coverImage: data.coverImage || bookReviewData.coverImage,
         };
 
         try {
-            // Use RTK Query mutation
             await updateBookReview({ id, ...updateBookReviewData }).unwrap();
 
             Swal.fire({
@@ -54,19 +81,12 @@ const UpdateBookReview = () => {
                 text: "Your book review has been updated successfully!",
                 icon: "success",
                 confirmButtonColor: "#3085d6",
-                confirmButtonText: "OK"
             });
 
-            await refetch(); // refresh data if needed
+            await refetch();
         } catch (error) {
-            console.error("Failed to update book review:", error);
-            Swal.fire({
-                title: "Error",
-                text: "Failed to update book review. Please try again.",
-                icon: "error",
-                confirmButtonColor: "#d33",
-                confirmButtonText: "OK"
-            });
+            console.error(error);
+            Swal.fire("Error", "Failed to update book review.", "error");
         }
     };
 
@@ -78,42 +98,59 @@ const UpdateBookReview = () => {
             <h2 className="text-2xl font-bold text-gray-800 mb-4">Update Book Review</h2>
 
             <form onSubmit={handleSubmit(onSubmit)}>
+
                 <InputField
                     label="Title"
                     name="title"
-                    placeholder="Enter book title"
                     register={register}
+                    errors={errors}
+                    validation={{ required: "Title is required" }}
                 />
 
                 <InputField
                     label="Review"
                     name="review"
-                    placeholder="Enter book review"
                     type="textarea"
                     register={register}
+                    errors={errors}
+                    validation={{
+                        required: "Review is required",
+                        validate: value => {
+                            const count = value.trim().split(/\s+/).length;
+                            return count <= 300 || `Review cannot exceed 300 words (Currently ${count})`;
+                        }
+                    }}
                 />
+
+                <p className={`text-sm mb-4 ${wordCount > 300 ? 'text-red-500' : 'text-gray-500'}`}>
+                    {wordCount} / 300 words
+                </p>
 
                 <SelectField
                     label="Category"
                     name="category"
+                    register={register}
+                    errors={errors}
+                    validation={{ required: "Please select a category" }}
                     options={[
                         { value: '', label: 'Choose A Category' },
-                        { value: 'business', label: 'Business' },
-                        { value: 'technology', label: 'Technology' },
                         { value: 'fiction', label: 'Fiction' },
+                        { value: 'science-fiction', label: 'Science Fiction' },
+                        { value: 'fantasy', label: 'Fantasy' },
+                        { value: 'mystery', label: 'Mystery' },
+                        { value: 'thriller', label: 'Thriller' },
+                        { value: 'romance', label: 'Romance' },
                         { value: 'horror', label: 'Horror' },
-                        { value: 'adventure', label: 'Adventure' },
+                        { value: 'biography', label: 'Biography' },
+                        { value: 'philosophy', label: 'Philosophy' },
+                        { value: 'self-help', label: 'Self-Help' },
+                        { value: 'young-adult', label: 'Young Adult' },
                     ]}
-                    register={register}
                 />
 
                 <div className="mb-4">
                     <label className="inline-flex items-center">
-                        <input
-                            type="checkbox"
-                            {...register('trending')}
-                            className="rounded text-blue-600 focus:ring focus:ring-offset-2 focus:ring-blue-500"
-                        />
+                        <input type="checkbox" {...register('trending')} />
                         <span className="ml-2 text-sm font-semibold text-gray-700">Trending</span>
                     </label>
                 </div>
@@ -122,32 +159,64 @@ const UpdateBookReview = () => {
                     label="Old Price"
                     name="oldPrice"
                     type="number"
-                    placeholder="Old Price"
                     register={register}
-                />
-                <InputField
-                    label="Rating(1-5)"
-                    name="rating"
-                    type="number"
-                    placeholder="New Price"
-                    register={register}
+                    errors={errors}
                 />
 
                 <InputField
                     label="New Price"
                     name="newPrice"
                     type="number"
-                    placeholder="New Price"
                     register={register}
+                    errors={errors}
                 />
 
+                <InputField
+                    label="Rating (1–5)"
+                    name="rating"
+                    type="number"
+                    register={register}
+                    errors={errors}
+                    validation={{
+                        required: "Rating is required",
+                        min: { value: 1, message: "Minimum rating is 1" },
+                        max: { value: 5, message: "Maximum rating is 5" }
+                    }}
+                />
+
+                {/* IMAGE URL */}
                 <InputField
                     label="Cover Image URL"
                     name="coverImage"
                     type="text"
-                    placeholder="Cover Image URL"
                     register={register}
+                    errors={errors}
                 />
+
+                {/* FILE UPLOAD */}
+                <div className="mb-4">
+                    <label className="block text-sm font-semibold text-gray-700 mb-2">
+                        Or Upload Image
+                    </label>
+                    <input
+                        type="file"
+                        accept="image/*"
+                        onChange={handleFileChange}
+                        className="w-full border p-2 rounded-md"
+                    />
+                </div>
+
+                {/* PREVIEW */}
+                {imagePreview && (
+                    <div className="mb-4">
+                        <p className="text-sm text-gray-600 mb-1">Image Preview:</p>
+                        <img
+                            src={imagePreview}
+                            alt="Preview"
+                            className="w-32 h-40 object-cover rounded shadow"
+                        />
+                    </div>
+                )}
 
                 <button
                     type="submit"
