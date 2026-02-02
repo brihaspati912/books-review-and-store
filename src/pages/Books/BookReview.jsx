@@ -23,6 +23,7 @@ export default function BookReview() {
         setExpandedReview((prev) => ({ ...prev, [id]: !prev[id] }));
     };
 
+    console.log(getImgUrl(review.coverImage))
     // 🔎 FIXED SEARCH FILTER (works now)
     const filteredReviews = reviews?.filter((review) => {
         const q = search.toLowerCase().trim();
